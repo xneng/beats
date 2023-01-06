@@ -20,6 +20,7 @@ package fileout
 import (
 	"context"
 	"os"
+	"fmt"
 	"path/filepath"
 
 	"github.com/elastic/beats/v7/libbeat/beat"
@@ -123,6 +124,8 @@ func (out *fileOutput) Publish(_ context.Context, batch publisher.Batch) error {
 		event := &events[i]
 
 		serializedEvent, err := out.codec.Encode(out.beat.Beat, &event.Content)
+		fmt.Println(string(serializedEvent))
+
 		if err != nil {
 			if event.Guaranteed() {
 				out.log.Errorf("Failed to serialize the event: %+v", err)

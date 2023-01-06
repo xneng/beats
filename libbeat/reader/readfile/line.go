@@ -164,6 +164,7 @@ func (r *LineReader) Next() (b []byte, n int, err error) {
 	// return and reset consumed bytes count
 	sz := r.byteCount
 	r.byteCount = 0
+	fmt.Println(string(bytes))
 	return bytes, sz, nil
 }
 
